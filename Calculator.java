@@ -1,7 +1,28 @@
+import java.util.Scanner;
+
 public class Calculator {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        double a = 11, b = 4, c = 2, d = 3, e = 5, f = 1;
+        System.out.print("Digite o valor de a: ");
+        double a = scanner.nextDouble();
+
+        System.out.print("Digite o valor de b: ");
+        double b = scanner.nextDouble();
+
+        System.out.print("Digite o valor de c: ");
+        double c = scanner.nextDouble();
+
+        System.out.print("Digite o valor de d: ");
+        double d = scanner.nextDouble();
+
+        System.out.print("Digite o valor de e: ");
+        double e = scanner.nextDouble();
+
+        System.out.print("Digite o valor de f: ");
+        double f = scanner.nextDouble();
+
+        scanner.close();
 
         Subtraction subtraction1 = new Subtraction(a, b);
         Addition addition1 = new Addition(c, d);
@@ -52,5 +73,62 @@ public class Calculator {
         double finalResult = finalSubtraction.getResult();
 
         System.out.println("O resultado da expressão ((a - b) * (c + d) - (e + f)) é: " + finalResult);
+    }
+}
+
+class Subtraction implements Runnable {
+    private double num1, num2;
+    private double result;
+
+    public Subtraction(double num1, double num2) {
+        this.num1 = num1;
+        this.num2 = num2;
+    }
+
+    @Override
+    public void run() {
+        result = num1 - num2;
+    }
+
+    public double getResult() {
+        return result;
+    }
+}
+
+class Addition implements Runnable {
+    private double num1, num2;
+    private double result;
+
+    public Addition(double num1, double num2) {
+        this.num1 = num1;
+        this.num2 = num2;
+    }
+
+    @Override
+    public void run() {
+        result = num1 + num2;
+    }
+
+    public double getResult() {
+        return result;
+    }
+}
+
+class Multiplication implements Runnable {
+    private double num1, num2;
+    private double result;
+
+    public Multiplication(double num1, double num2) {
+        this.num1 = num1;
+        this.num2 = num2;
+    }
+
+    @Override
+    public void run() {
+        result = num1 * num2;
+    }
+
+    public double getResult() {
+        return result;
     }
 }
